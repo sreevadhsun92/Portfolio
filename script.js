@@ -70,7 +70,14 @@ window.addEventListener('scroll', updateActiveLink, { passive: true });
 updateActiveLink();
 
 // ──────────────── TYPING EFFECT ────────────────
-const roles  = ['Senior Full Stack Developer', 'MEAN Stack Expert', 'Tech Lead', 'Enterprise App Architect'];
+// const roles  = ['Senior Full Stack Developer', 'MEAN Stack Expert', 'Tech Lead', 'Enterprise App Architect'];
+const roles = [
+  'Senior Full Stack Developer',
+  'MEAN Stack Developer',
+  'Electron.js Desktop Developer',
+  'Tech Lead',
+  'Enterprise App Architect'
+];
 const target = document.getElementById('typedRole');
 let  roleIdx  = 0;
 let  charIdx  = 0;
