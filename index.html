@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sree Vadhsun N — Senior Full Stack Developer</title>
+  <title>Sreevadhsun N — Senior Full Stack Developer</title>
   <link rel="stylesheet" href="theme.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -68,6 +68,10 @@ export class AppComponent {
         <div class="hero__cta-row">
           <a href="#projects" class="btn btn--primary">View Projects</a>
           <a href="#contact" class="btn btn--outline">Let's Talk</a>
+          <button class="btn btn--ghost" id="downloadCvBtn" onclick="downloadResume()">
+            <span class="btn__icon" id="downloadIcon">↓</span>
+            <span id="downloadLabel">Download CV</span>
+          </button>
         </div>
         <div class="hero__stats">
           <div class="stat">

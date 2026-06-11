@@ -108,6 +108,45 @@ ul { list-style: none; }
 .btn--outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
 .btn--outline:hover { background: var(--accent-dim); transform: translateY(-2px); }
 .btn--full { width: 100%; justify-content: center; }
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border);
+}
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-2px);
+}
+.btn--ghost:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none !important;
+}
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  font-size: 0.7rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.btn__spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
 /* ──────────────── TAGS ──────────────── */
 .tag {

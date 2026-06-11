@@ -140,7 +140,69 @@ window.addEventListener('scroll', revealOnScroll, { passive: true });
 window.addEventListener('load', revealOnScroll);
 revealOnScroll();
 
-// ──────────────── FORM SUBMIT FEEDBACK ────────────────
+// ──────────────── RESUME DOWNLOAD ────────────────
+function downloadResume() {
+  const btn   = document.getElementById('downloadCvBtn');
+  const label = document.getElementById('downloadLabel');
+
+  if (btn.disabled) return;
+
+  // Show spinner
+  btn.disabled = true;
+  document.getElementById('downloadIcon').outerHTML =
+    '<span class="btn__spinner" id="downloadIcon"></span>';
+  label.textContent = 'Downloading…';
+
+  const PDF_PATH = 'images/Sreevadhsun_N_Resume.pdf';
+
+  fetch(PDF_PATH)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.blob();
+    })
+    .then(blob => {
+      // Force download via blob URL
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href     = blobUrl;
+      a.download = 'Sreevadhsun_N_Resume.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 2000);
+      showSuccess();
+    })
+    .catch(err => {
+      console.warn('Fetch failed, using direct download fallback:', err);
+      // Fallback: direct download attribute — works when served properly
+      const a = document.createElement('a');
+      a.href     = PDF_PATH;
+      a.download = 'Sreevadhsun_N_Resume.pdf';
+      a.target   = '_blank'; // last resort: new tab instead of redirect
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showSuccess();
+    });
+
+  function showSuccess() {
+    const el = document.getElementById('downloadIcon');
+    if (el) el.outerHTML = '<span class="btn__icon" id="downloadIcon">✓</span>';
+    label.textContent     = 'Downloaded!';
+    btn.style.borderColor = 'var(--accent)';
+    btn.style.color       = 'var(--accent)';
+    setTimeout(resetBtn, 2500);
+  }
+
+  function resetBtn() {
+    const el = document.getElementById('downloadIcon');
+    if (el) el.outerHTML = '<span class="btn__icon" id="downloadIcon">↓</span>';
+    label.textContent     = 'Download CV';
+    btn.disabled          = false;
+    btn.style.borderColor = '';
+    btn.style.color       = '';
+  }
+}
 function handleFormSubmit(btn) {
   const originalText = btn.textContent;
   btn.textContent = '✓ Message Sent!';
